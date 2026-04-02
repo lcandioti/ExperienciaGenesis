@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Feedback Mensual - Génesis Aviación</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: linear-gradient(135deg, #2C3E50 0%, #34495e 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #2C3E50 0%, #34495e 100%);
+            padding: 40px 30px;
+            text-align: center;
+            color: white;
+        }
+
+        .logo-container {
+            margin-bottom: 20px;
+        }
+
+        .logo-container img {
+            max-width: 250px;
+            width: 80%;
+            height: auto;
+        }
+
+        .header h1 {
+            font-size: 24px;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        .header p {
+            font-size: 15px;
+            opacity: 0.9;
+            line-height: 1.5;
+        }
+
+        .form-content {
+            padding: 30px;
+        }
+
+        .section {
+            margin-bottom: 35px;
+        }
+
+        .section-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: #2C3E50;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 3px solid #E74C3C;
+        }
+
+        .question {
+            margin-bottom: 25px;
+        }
+
+        .question-label {
+            display: block;
+            font-size: 15px;
+            font-weight: 500;
+            color: #2C3E50;
+            margin-bottom: 12px;
+        }
+
+        .required {
+            color: #E74C3C;
+        }
+
+        select, input[type="text"], textarea {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 15px;
+            transition: all 0.3s;
+            font-family: inherit;
+        }
+
+        select:focus, input[type="text"]:focus, textarea:focus {
+            outline: none;
+            border-color: #E74C3C;
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 80px;
+        }
+
+        .radio-group, .checkbox-group {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .radio-option, .checkbox-option {
+            display: flex;
+            align-items: center;
+            padding: 12px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .radio-option:hover, .checkbox-option:hover {
+            border-color: #E74C3C;
+            background: #fef5f5;
+        }
+
+        .radio-option input, .checkbox-option input {
+            margin-right: 10px;
+            cursor: pointer;
+            width: 18px;
+            height: 18px;
+        }
+
+        .radio-option label, .checkbox-option label {
+            cursor: pointer;
+            flex: 1;
+            font-size: 15px;
+        }
+
+        .rating-scale {
+            display: flex;
+            justify-content: space-between;
+            gap: 8px;
+            margin-top: 10px;
+        }
+
+        .rating-option {
+            flex: 1;
+            text-align: center;
+        }
+
+        .rating-option input[type="radio"] {
+            display: none;
+        }
+
+        .rating-option label {
+            display: block;
+            padding: 15px 10px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-weight: 600;
+            color: #666;
+        }
+
+        .rating-option input[type="radio"]:checked + label {
+            background: #E74C3C;
+            border-color: #E74C3C;
+            color: white;
+        }
+
+        .rating-labels {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 8px;
+            font-size: 12px;
+            color: #666;
+        }
+
+        .nps-scale {
+            display: grid;
+            grid-template-columns: repeat(11, 1fr);
+            gap: 6px;
+            margin-top: 10px;
+        }
+
+        .nps-option input[type="radio"] {
+            display: none;
+        }
+
+        .nps-option label {
+            display: block;
+            padding: 12px 8px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-weight: 600;
+            text-align: center;
+            font-size: 14px;
+            color: #666;
+        }
+
+        .nps-option input[type="radio"]:checked + label {
+            background: #E74C3C;
+            border-color: #E74C3C;
+            color: white;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 16px;
+            background: linear-gradient(135deg, #E74C3C 0%, #c0392b 100%);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin-top: 20px;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(231, 76, 60, 0.4);
+        }
+
+        .submit-btn:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .success-message {
+            display: none;
+            text-align: center;
+            padding: 40px;
+        }
+
+        .success-message.show {
+            display: block;
+        }
+
+        .success-icon {
+            font-size: 64px;
+            margin-bottom: 20px;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        @media (max-width: 480px) {
+            body {
+                padding: 10px;
+            }
+
+            .header {
+                padding: 30px 20px;
+            }
+
+            .form-content {
+                padding: 20px;
+            }
+
+            .nps-scale {
+                grid-template-columns: repeat(6, 1fr);
+            }
+
+            .rating-scale {
+                flex-wrap: wrap;
+            }
+
+            .rating-option {
+                min-width: 60px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="logo-container" style="font-size: 48px; font-weight: 800; color: white; margin-bottom: 10px;">
+                GÉNESIS AVIACIÓN
+            </div>
+            <h1>Experiencia Mensual</h1>
+            <p>Tu opinión nos ayuda a mejorar. Este formulario es <strong>100% anónimo</strong> y te tomará solo 3 minutos.</p>
+        </div>
+
+        <form id="feedbackForm" class="form-content">
+            <!-- Sección 1: Datos Básicos -->
+            <div class="section">
+                <h2 class="section-title">Información General</h2>
+                
+                <div class="question">
+                    <label class="question-label">¿Qué curso estás realizando actualmente? <span class="required">*</span></label>
+                    <select name="curso" required>
+                        <option value="">Seleccioná una opción</option>
+                        <option value="Piloto Privado">Piloto Privado</option>
+                        <option value="Piloto Comercial">Piloto Comercial</option>
+                        <option value="Instructor de Vuelo">Instructor de Vuelo</option>
+                        <option value="Juntando horas">Juntando horas</option>
+                    </select>
+                </div>
+
+                <div class="question">
+                    <label class="question-label">¿Hace cuánto tiempo estás en la escuela? <span class="required">*</span></label>
+                    <select name="antiguedad" required>
+                        <option value="">Seleccioná una opción</option>
+                        <option value="Menos de 3 meses">Menos de 3 meses</option>
+                        <option value="3 a 6 meses">3 a 6 meses</option>
+                        <option value="6 meses a 1 año">6 meses a 1 año</option>
+                        <option value="Más de 1 año">Más de 1 año</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- Sección 2: NPS y Satisfacción General -->
+            <div class="section">
+                <h2 class="section-title">Satisfacción General</h2>
+                
+                <div class="question">
+                    <label class="question-label">¿Qué probabilidad hay de que recomiendes Génesis a un amigo que quiera ser piloto? <span class="required">*</span></label>
+                    <div class="nps-scale">
+                        <div class="nps-option"><input type="radio" name="nps" value="0" id="nps0" required><label for="nps0">0</label></div>
+                        <div class="nps-option"><input type="radio" name="nps" value="1" id="nps1"><label for="nps1">1</label></div>
+                        <div class="nps-option"><input type="radio" name="nps" value="2" id="nps2"><label for="nps2">2</label></div>
+                        <div class="nps-option"><input type="radio" name="nps" value="3" id="nps3"><label for="nps3">3</label></div>
+                        <div class="nps-option"><input type="radio" name="nps" value="4" id="nps4"><label for="nps4">4</label></div>
+                        <div class="nps-option"><input type="radio" name="nps" value="5" id="nps5"><label for="nps5">5</label></div>
+                        <div class="nps-option"><input type="radio" name="nps" value="6" id="nps6"><label for="nps6">6</label></div>
+                        <div class="nps-option"><input type="radio" name="nps" value="7" id="nps7"><label for="nps7">7</label></div>
+                        <div class="nps-option"><input type="radio" name="nps" value="8" id="nps8"><label for="nps8">8</label></div>
+                        <div class="nps-option"><input type="radio" name="nps" value="9" id="nps9"><label for="nps9">9</label></div>
+                        <div class="nps-option"><input type="radio" name="nps" value="10" id="nps10"><label for="nps10">10</label></div>
+                    </div>
+                    <div class="rating-labels">
+                        <span>Nada probable</span>
+                        <span>Muy probable</span>
+                    </div>
+                </div>
+
+                <div class="question">
+                    <label class="question-label">¿Por qué elegiste ese puntaje?</label>
+                    <textarea name="nps_motivo" rows="3" placeholder="Opcional: Contanos qué te hace sentir así..."></textarea>
+                </div>
+            </div>
+
+            <!-- Sección 3: Calidad de Instrucción -->
+            <div class="section">
+                <h2 class="section-title">Instrucción</h2>
+                
+                <div class="question">
+                    <label class="question-label">¿Cómo calificarías la calidad de la instrucción teórica? <span class="required">*</span></label>
+                    <div class="rating-scale">
+                        <div class="rating-option"><input type="radio" name="calidad_teorica" value="1" id="teorica1" required><label for="teorica1">1</label></div>
+                        <div class="rating-option"><input type="radio" name="calidad_teorica" value="2" id="teorica2"><label for="teorica2">2</label></div>
+                        <div class="rating-option"><input type="radio" name="calidad_teorica" value="3" id="teorica3"><label for="teorica3">3</label></div>
+                        <div class="rating-option"><input type="radio" name="calidad_teorica" value="4" id="teorica4"><label for="teorica4">4</label></div>
+                        <div class="rating-option"><input type="radio" name="calidad_teorica" value="5" id="teorica5"><label for="teorica5">5</label></div>
+                    </div>
+                    <div class="rating-labels">
+                        <span>Muy mala</span>
+                        <span>Excelente</span>
+                    </div>
+                </div>
+
+                <div class="question">
+                    <label class="question-label">¿Cómo calificarías la calidad de la instrucción de vuelo? <span class="required">*</span></label>
+                    <div class="rating-scale">
+                        <div class="rating-option"><input type="radio" name="calidad_vuelo" value="1" id="vuelo1" required><label for="vuelo1">1</label></div>
+                        <div class="rating-option"><input type="radio" name="calidad_vuelo" value="2" id="vuelo2"><label for="vuelo2">2</label></div>
+                        <div class="rating-option"><input type="radio" name="calidad_vuelo" value="3" id="vuelo3"><label for="vuelo3">3</label></div>
+                        <div class="rating-option"><input type="radio" name="calidad_vuelo" value="4" id="vuelo4"><label for="vuelo4">4</label></div>
+                        <div class="rating-option"><input type="radio" name="calidad_vuelo" value="5" id="vuelo5"><label for="vuelo5">5</label></div>
+                    </div>
+                    <div class="rating-labels">
+                        <span>Muy mala</span>
+                        <span>Excelente</span>
+                    </div>
+                </div>
+
+                <div class="question">
+                    <label class="question-label">¿Los instructores explican con claridad y paciencia? <span class="required">*</span></label>
+                    <div class="radio-group">
+                        <div class="radio-option">
+                            <input type="radio" name="instructores_claridad" value="Sí, siempre" id="claridad_si" required>
+                            <label for="claridad_si">Sí, siempre</label>
+                        </div>
+                        <div class="radio-option">
+                            <input type="radio" name="instructores_claridad" value="La mayoría de las veces" id="claridad_mayoria">
+                            <label for="claridad_mayoria">La mayoría de las veces</label>
+                        </div>
+                        <div class="radio-option">
+                            <input type="radio" name="instructores_claridad" value="A veces" id="claridad_aveces">
+                            <label for="claridad_aveces">A veces</label>
+                        </div>
+                        <div class="radio-option">
+                            <input type="radio" name="instructores_claridad" value="Raramente" id="claridad_no">
+                            <label for="claridad_no">Raramente</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sección 4: Aeronaves y Logística -->
+            <div class="section">
+                <h2 class="section-title">Aeronaves y Coordinación</h2>
+                
+                <div class="question">
+                    <label class="question-label">¿Experimentaste alguno de estos problemas en los últimos 30 días? <span class="required">*</span></label>
+                    <div class="checkbox-group">
+                        <div class="checkbox-option">
+                            <input type="checkbox" name="problemas_aeronaves" value="Vuelo cancelado por falla mecánica" id="prob1">
+                            <label for="prob1">Vuelo cancelado por falla mecánica</label>
+                        </div>
+                        <div class="checkbox-option">
+                            <input type="checkbox" name="problemas_aeronaves" value="Demoras por mantenimiento no planificado" id="prob2">
+                            <label for="prob2">Demoras por mantenimiento no planificado</label>
+                        </div>
+                        <div class="checkbox-option">
+                            <input type="checkbox" name="problemas_aeronaves" value="Instrumentos descalibrados/defectuosos" id="prob3">
+                            <label for="prob3">Instrumentos descalibrados/defectuosos</label>
+                        </div>
+                        <div class="checkbox-option">
+                            <input type="checkbox" name="problemas_aeronaves" value="Ninguno" id="prob4">
+                            <label for="prob4">Ninguno de estos problemas</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="question">
+                    <label class="question-label">Cuando querés coordinar un vuelo, ¿cuál es el principal obstáculo? <span class="required">*</span></label>
+                    <div class="radio-group">
+                        <div class="radio-option">
+                            <input type="radio" name="obstaculo_coordinacion" value="No hay disponibilidad de aviones" id="obst1" required>
+                            <label for="obst1">No hay disponibilidad de aviones</label>
+                        </div>
+                        <div class="radio-option">
+                            <input type="radio" name="obstaculo_coordinacion" value="No hay disponibilidad de instructores" id="obst2">
+                            <label for="obst2">No hay disponibilidad de instructores</label>
+                        </div>
+                        <div class="radio-option">
+                            <input type="radio" name="obstaculo_coordinacion" value="El proceso de reserva es complicado" id="obst3">
+                            <label for="obst3">El proceso de reserva es complicado</label>
+                        </div>
+                        <div class="radio-option">
+                            <input type="radio" name="obstaculo_coordinacion" value="Demoran en responder" id="obst4">
+                            <label for="obst4">Demoran en responder</label>
+                        </div>
+                        <div class="radio-option">
+                            <input type="radio" name="obstaculo_coordinacion" value="No tengo obstáculos" id="obst5">
+                            <label for="obst5">No tengo obstáculos significativos</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sección 5: Organización y Comunicación -->
+            <div class="section">
+                <h2 class="section-title">Organización</h2>
+                
+                <div class="question">
+                    <label class="question-label">¿El programa de formación está bien organizado? <span class="required">*</span></label>
+                    <div class="rating-scale">
+                        <div class="rating-option"><input type="radio" name="organizacion_programa" value="1" id="org1" required><label for="org1">1</label></div>
+                        <div class="rating-option"><input type="radio" name="organizacion_programa" value="2" id="org2"><label for="org2">2</label></div>
+                        <div class="rating-option"><input type="radio" name="organizacion_programa" value="3" id="org3"><label for="org3">3</label></div>
+                        <div class="rating-option"><input type="radio" name="organizacion_programa" value="4" id="org4"><label for="org4">4</label></div>
+                        <div class="rating-option"><input type="radio" name="organizacion_programa" value="5" id="org5"><label for="org5">5</label></div>
+                    </div>
+                    <div class="rating-labels">
+                        <span>Muy desorganizado</span>
+                        <span>Muy organizado</span>
+                    </div>
+                </div>
+
+                <div class="question">
+                    <label class="question-label">¿Cómo calificarías la comunicación con el personal? <span class="required">*</span></label>
+                    <div class="rating-scale">
+                        <div class="rating-option"><input type="radio" name="comunicacion" value="1" id="com1" required><label for="com1">1</label></div>
+                        <div class="rating-option"><input type="radio" name="comunicacion" value="2" id="com2"><label for="com2">2</label></div>
+                        <div class="rating-option"><input type="radio" name="comunicacion" value="3" id="com3"><label for="com3">3</label></div>
+                        <div class="rating-option"><input type="radio" name="comunicacion" value="4" id="com4"><label for="com4">4</label></div>
+                        <div class="rating-option"><input type="radio" name="comunicacion" value="5" id="com5"><label for="com5">5</label></div>
+                    </div>
+                    <div class="rating-labels">
+                        <span>Muy mala</span>
+                        <span>Excelente</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sección 6: Insights Estratégicos -->
+            <div class="section">
+                <h2 class="section-title">Tu Opinión Importa</h2>
+                
+                <div class="question">
+                    <label class="question-label">Si pudieras cambiar UNA COSA de Génesis para completar tu formación más rápido, ¿qué sería? <span class="required">*</span></label>
+                    <textarea name="cambio_principal" rows="4" required placeholder="Ej: Más disponibilidad de aviones los fines de semana, horarios más flexibles, mejor sistema de reservas, etc."></textarea>
+                </div>
+
+                <div class="question">
+                    <label class="question-label">¿Qué te motivó originalmente a elegir Génesis Aviación?</label>
+                    <textarea name="motivacion_eleccion" rows="3" placeholder="Opcional: Recomendación, precio, ubicación, reputación, etc."></textarea>
+                </div>
+
+                <div class="question">
+                    <label class="question-label">¿Hay algún servicio o beneficio que te gustaría que ofreciéramos y actualmente no tenemos?</label>
+                    <textarea name="servicios_nuevos" rows="3" placeholder="Opcional: Simulador, cursos teóricos online, descuentos por volumen de horas, etc."></textarea>
+                </div>
+            </div>
+
+            <button type="submit" class="submit-btn" id="submitBtn">Enviar Respuestas</button>
+        </form>
+
+        <div class="success-message" id="successMessage">
+            <div class="success-icon">✈️</div>
+            <h2 style="color: #2C3E50; margin-bottom: 15px;">¡Gracias por tu tiempo!</h2>
+            <p style="color: #666; font-size: 16px;">Tus respuestas nos ayudan a mejorar día a día.</p>
+        </div>
+    </div>
+
+    <script>
+        // IMPORTANTE: Reemplazá esta URL por la URL de tu Google Apps Script
+        const SCRIPT_URL = https://script.google.com/macros/s/AKfycbz9n2hEo1PWi-7ana-C4x_KZ9Bk8Ol2UMS7hYrsopYYLWPN8Jz3ereHnk2nQ6FvbfKB/exec;
+
+        const form = document.getElementById('feedbackForm');
+        const submitBtn = document.getElementById('submitBtn');
+        const successMessage = document.getElementById('successMessage');
+
+        // Manejo de checkbox exclusivo "Ninguno"
+        const checkboxes = document.querySelectorAll('input[name="problemas_aeronaves"]');
+        const ningunoCheckbox = document.getElementById('prob4');
+
+        checkboxes.forEach(checkbox => {
+            checkbox.addEventListener('change', function() {
+                if (this === ningunoCheckbox && this.checked) {
+                    checkboxes.forEach(cb => {
+                        if (cb !== ningunoCheckbox) cb.checked = false;
+                    });
+                } else if (this !== ningunoCheckbox && this.checked) {
+                    ningunoCheckbox.checked = false;
+                }
+            });
+        });
+
+        form.addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Enviando...';
+
+            const formData = new FormData(form);
+            const data = {};
+            
+            // Recolectar todos los datos
+            for (let [key, value] of formData.entries()) {
+                if (key === 'problemas_aeronaves') {
+                    if (!data[key]) data[key] = [];
+                    data[key].push(value);
+                } else {
+                    data[key] = value;
+                }
+            }
+
+            // Convertir array de problemas a string
+            if (data.problemas_aeronaves) {
+                data.problemas_aeronaves = data.problemas_aeronaves.join(', ');
+            } else {
+                data.problemas_aeronaves = '';
+            }
+
+            // Agregar timestamp
+            data.timestamp = new Date().toISOString();
+
+            try {
+                const response = await fetch(SCRIPT_URL, {
+                    method: 'POST',
+                    mode: 'no-cors',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(data)
+                });
+
+                // Con no-cors no podemos leer la respuesta, asumimos éxito
+                form.classList.add('hidden');
+                successMessage.classList.add('show');
+                
+            } catch (error) {
+                console.error('Error:', error);
+                alert('Hubo un error al enviar el formulario. Por favor, intentá nuevamente.');
+                submitBtn.disabled = false;
+                submitBtn.textContent = 'Enviar Respuestas';
+            }
+        });
+    </script>
+</body>
+</html>
