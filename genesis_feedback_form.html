@@ -333,13 +333,13 @@
                 <h2 class="section-title">Instrucción</h2>
                 
                 <div class="question">
-                    <label class="question-label">¿Cómo calificarías la calidad de la instrucción teórica? <span class="required">*</span></label>
+                    <label class="question-label">¿Cómo calificarías la calidad de la instrucción de vuelo? <span class="required">*</span></label>
                     <div class="rating-scale">
-                        <div class="rating-option"><input type="radio" name="calidad_teorica" value="1" id="teorica1" required><label for="teorica1">1</label></div>
-                        <div class="rating-option"><input type="radio" name="calidad_teorica" value="2" id="teorica2"><label for="teorica2">2</label></div>
-                        <div class="rating-option"><input type="radio" name="calidad_teorica" value="3" id="teorica3"><label for="teorica3">3</label></div>
-                        <div class="rating-option"><input type="radio" name="calidad_teorica" value="4" id="teorica4"><label for="teorica4">4</label></div>
-                        <div class="rating-option"><input type="radio" name="calidad_teorica" value="5" id="teorica5"><label for="teorica5">5</label></div>
+                        <div class="rating-option"><input type="radio" name="calidad_vuelo" value="1" id="vuelo1" required><label for="vuelo1">1</label></div>
+                        <div class="rating-option"><input type="radio" name="calidad_vuelo" value="2" id="vuelo2"><label for="vuelo2">2</label></div>
+                        <div class="rating-option"><input type="radio" name="calidad_vuelo" value="3" id="vuelo3"><label for="vuelo3">3</label></div>
+                        <div class="rating-option"><input type="radio" name="calidad_vuelo" value="4" id="vuelo4"><label for="vuelo4">4</label></div>
+                        <div class="rating-option"><input type="radio" name="calidad_vuelo" value="5" id="vuelo5"><label for="vuelo5">5</label></div>
                     </div>
                     <div class="rating-labels">
                         <span>Muy mala</span>
@@ -348,13 +348,13 @@
                 </div>
 
                 <div class="question">
-                    <label class="question-label">¿Cómo calificarías la calidad de la instrucción de vuelo? <span class="required">*</span></label>
+                    <label class="question-label">¿Cómo calificarías la calidad de la instrucción de simulador? <span class="required">*</span></label>
                     <div class="rating-scale">
-                        <div class="rating-option"><input type="radio" name="calidad_vuelo" value="1" id="vuelo1" required><label for="vuelo1">1</label></div>
-                        <div class="rating-option"><input type="radio" name="calidad_vuelo" value="2" id="vuelo2"><label for="vuelo2">2</label></div>
-                        <div class="rating-option"><input type="radio" name="calidad_vuelo" value="3" id="vuelo3"><label for="vuelo3">3</label></div>
-                        <div class="rating-option"><input type="radio" name="calidad_vuelo" value="4" id="vuelo4"><label for="vuelo4">4</label></div>
-                        <div class="rating-option"><input type="radio" name="calidad_vuelo" value="5" id="vuelo5"><label for="vuelo5">5</label></div>
+                        <div class="rating-option"><input type="radio" name="calidad_simulador" value="1" id="simulador1" required><label for="simulador1">1</label></div>
+                        <div class="rating-option"><input type="radio" name="calidad_simulador" value="2" id="simulador2"><label for="simulador2">2</label></div>
+                        <div class="rating-option"><input type="radio" name="calidad_simulador" value="3" id="simulador3"><label for="simulador3">3</label></div>
+                        <div class="rating-option"><input type="radio" name="calidad_simulador" value="4" id="simulador4"><label for="simulador4">4</label></div>
+                        <div class="rating-option"><input type="radio" name="calidad_simulador" value="5" id="simulador5"><label for="simulador5">5</label></div>
                     </div>
                     <div class="rating-labels">
                         <span>Muy mala</span>
@@ -385,17 +385,24 @@
                 </div>
 
                 <div class="question">
-                    <label class="question-label">¿El programa de formación está bien organizado? <span class="required">*</span></label>
-                    <div class="rating-scale">
-                        <div class="rating-option"><input type="radio" name="organizacion_programa" value="1" id="org1" required><label for="org1">1</label></div>
-                        <div class="rating-option"><input type="radio" name="organizacion_programa" value="2" id="org2"><label for="org2">2</label></div>
-                        <div class="rating-option"><input type="radio" name="organizacion_programa" value="3" id="org3"><label for="org3">3</label></div>
-                        <div class="rating-option"><input type="radio" name="organizacion_programa" value="4" id="org4"><label for="org4">4</label></div>
-                        <div class="rating-option"><input type="radio" name="organizacion_programa" value="5" id="org5"><label for="org5">5</label></div>
-                    </div>
-                    <div class="rating-labels">
-                        <span>Muy desorganizado</span>
-                        <span>Muy organizado</span>
+                    <label class="question-label">¿Te sentís acompañado en el curso o sentís poco seguimiento? <span class="required">*</span></label>
+                    <div class="radio-group">
+                        <div class="radio-option">
+                            <input type="radio" name="seguimiento_curso" value="Muy acompañado" id="seg1" required>
+                            <label for="seg1">Muy acompañado</label>
+                        </div>
+                        <div class="radio-option">
+                            <input type="radio" name="seguimiento_curso" value="Medianamente acompañado" id="seg2">
+                            <label for="seg2">Medianamente acompañado</label>
+                        </div>
+                        <div class="radio-option">
+                            <input type="radio" name="seguimiento_curso" value="Poco seguimiento" id="seg3">
+                            <label for="seg3">Poco seguimiento</label>
+                        </div>
+                        <div class="radio-option">
+                            <input type="radio" name="seguimiento_curso" value="Sin seguimiento" id="seg4">
+                            <label for="seg4">Sin seguimiento</label>
+                        </div>
                     </div>
                 </div>
             </div>
